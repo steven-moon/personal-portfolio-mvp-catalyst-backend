@@ -17,6 +17,7 @@ This is a full-stack Personal Portfolio application designed as a customizable p
 
 - [Backend README](../README.md) - Main setup instructions, features, and project overview
 - [Backend Architecture Rules](../.cursor) - Coding standards and architecture guidelines
+- [Backend Development Logs](./dev-logs/BACKEND-DEV-LOGS.md) - Detailed chronological record of implementation steps
 
 ### Database Documentation
 
@@ -40,6 +41,30 @@ API endpoints are documented in the [Backend README](../README.md#🔌-api-endpo
 3. **Model Implementation**: Follow the checklist in the To-Do document
 4. **API Development**: Create controllers and routes following the architecture rules
 5. **Testing**: Use the provided test scripts to verify functionality
+6. **Documentation**: Log all development activities in the [Backend Development Logs](./dev-logs/BACKEND-DEV-LOGS.md)
+
+### Development Logging Importance
+
+All team members must document their work by updating the [Backend Development Logs](./dev-logs/BACKEND-DEV-LOGS.md) after completing each significant development task. These logs serve multiple critical purposes:
+
+- Providing a chronological history of development activities
+- Helping new team members understand implementation decisions
+- Documenting solutions to complex problems
+- Creating a reference for troubleshooting similar issues
+- Tracking progress and maintaining project momentum
+
+**Format for Log Entries:**
+```markdown
+## Step X: [Feature/Component Name]
+**Date:** YYYY-MM-DD
+
+- Detailed bullet points of what was implemented
+- Challenges encountered and how they were overcome
+- Configuration changes or environment setup steps
+- References to resources used for implementation
+```
+
+Add a new log entry for each major implementation step, keeping the project history complete and up-to-date.
 
 ## Project Status Logs
 

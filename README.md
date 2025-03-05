@@ -16,6 +16,7 @@ A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JW
 
 - [Database Configuration Guide](./documents/db/DATABASE.md) - Detailed guide on database setup, migrations, and model creation
 - [Backend Architecture Rules](./.cursor) - Coding standards and architecture guidelines using Cursor Rules for AI
+- [Backend Development Logs](./documents/dev-logs/BACKEND-DEV-LOGS.md) - Chronological record of implementation steps and development decisions
 
 ## 🔌 API Endpoints
 
@@ -203,6 +204,52 @@ For more specific API testing, see the [Manual Testing](#manual-testing) section
 ```
 
 For detailed information about the database setup and models, refer to the [Database Configuration Guide](./documents/db/DATABASE.md).
+
+## 📝 Development Logging
+
+This project maintains a detailed development log to track implementation steps, decisions, and solutions. All team members must document their development activities.
+
+### Development Log File
+
+The [Backend Development Logs](./documents/dev-logs/BACKEND-DEV-LOGS.md) contain a chronological record of all significant implementation steps, including:
+
+- Feature implementations
+- Bug fixes
+- Architecture decisions
+- Database migrations
+- Dependency changes
+- Environment setup changes
+
+### Logging Guidelines
+
+When working on this project, follow these logging guidelines:
+
+1. **Log After Each Significant Task**: Create a new log entry after completing a feature, fixing a bug, or making architectural decisions
+2. **Use the Standard Format**:
+   ```
+   ## Step X: [Feature/Component Name]
+   **Date:** YYYY-MM-DD
+
+   - Detailed bullet points describing implementations
+   - Challenges encountered and solutions
+   - Configuration changes made
+   ```
+3. **Be Detailed**: Include enough information for others to understand what was done and why
+4. **Include Dates**: Always add the date of implementation
+5. **Reference Related Files**: Mention specific files or directories modified
+6. **Document Challenges**: Note any significant challenges and how they were resolved
+
+### Benefits of Development Logging
+
+- Creates a historical record of project evolution
+- Helps new team members understand past decisions
+- Serves as documentation for troubleshooting
+- Tracks project progress over time
+- Provides context for code review and future maintenance
+
+### Viewing the Development Log
+
+To review the complete development history, check the [Backend Development Logs](./documents/dev-logs/BACKEND-DEV-LOGS.md) file.
 
 ## 🌱 Database Seeders
 
