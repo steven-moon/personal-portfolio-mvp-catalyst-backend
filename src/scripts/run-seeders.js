@@ -6,28 +6,14 @@
 const path = require('path');
 const { Sequelize } = require('sequelize');
 const { Umzug, SequelizeStorage } = require('umzug');
-const config = require('../config/config');
+const { sequelize } = require('../config/database'); // Import the existing sequelize instance
 const db = require('../models'); // Import all models
-
-const env = process.env.NODE_ENV || 'development';
-const dbConfig = config[env];
 
 async function runSeeders() {
   try {
     console.log('Starting to run seeders...');
     
-    // Create Sequelize instance
-    const sequelize = new Sequelize(
-      dbConfig.database,
-      dbConfig.username,
-      dbConfig.password,
-      {
-        host: dbConfig.host,
-        dialect: dbConfig.dialect,
-        logging: false,
-      }
-    );
-    
+    // Use the existing configured sequelize instance instead of creating a new one
     // Test database connection
     await sequelize.authenticate();
     console.log('Database connection has been established successfully.');

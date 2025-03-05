@@ -16,7 +16,7 @@ This is a full-stack Personal Portfolio application designed as a customizable p
 ### Core Documentation
 
 - [Backend README](../README.md) - Main setup instructions, features, and project overview
-- [Backend Architecture Rules](../.cursor) - Coding standards and architecture guidelines
+- [Backend Architecture Rules](../.cursorrules) - Coding standards and architecture guidelines
 - [Backend Development Logs](./dev-logs/BACKEND-DEV-LOGS.md) - Detailed chronological record of implementation steps
 
 ### Database Documentation
@@ -89,7 +89,7 @@ Add a new log entry for each major implementation step, keeping the project hist
 
 When contributing to this project:
 
-1. Follow the architecture guidelines in the [Backend Architecture Rules](../.cursor)
+1. Follow the architecture guidelines in the [Backend Architecture Rules](../.cursorrules)
 2. Update relevant documentation when making significant changes
 3. Add appropriate tests for new functionality
 4. Mark completed items in the To-Do list when implementing models

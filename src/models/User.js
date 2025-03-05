@@ -62,11 +62,22 @@ module.exports = (sequelize) => {
         }
       },
     },
+    // Define default scope to exclude password by default
+    defaultScope: {
+      attributes: { exclude: ['password'] },
+    },
   });
 
   // Instance method to check password validity
   User.prototype.isValidPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
+  };
+
+  // Override toJSON method to exclude password
+  User.prototype.toJSON = function() {
+    const values = Object.assign({}, this.get());
+    delete values.password;
+    return values;
   };
 
   // This will be used to create associations with other models

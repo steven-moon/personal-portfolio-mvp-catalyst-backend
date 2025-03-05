@@ -15,7 +15,7 @@ A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JW
 ## 📖 Related Documentation
 
 - [Database Configuration Guide](./documents/db/DATABASE.md) - Detailed guide on database setup, migrations, and model creation
-- [Backend Architecture Rules](./.cursor) - Coding standards and architecture guidelines using Cursor Rules for AI
+- [Backend Architecture Rules](./.cursorrules) - Coding standards and architecture guidelines using Cursor Rules for AI
 - [Backend Development Logs](./documents/dev-logs/BACKEND-DEV-LOGS.md) - Chronological record of implementation steps and development decisions
 
 ## 🔌 API Endpoints
@@ -307,8 +307,8 @@ node scripts/contact-api-test.js
 This project uses Cursor's Rules for AI feature to maintain consistent coding standards, architecture, and development practices. The rules are structured in the following way:
 
 - Root-level `.cursor` file: Contains high-level project guidelines and references to component-specific rules
-- `/frontend/.cursor`: Contains detailed frontend development rules
-- `/backend/.cursor`: Contains detailed backend development rules
+- `/frontend/.cursorrules`: Contains detailed frontend development rules
+- `/backend/.cursorrules`: Contains detailed backend development rules
 
 These rules help guide AI assistants to follow project-specific conventions and ensure consistency across the codebase.
 
@@ -326,7 +326,7 @@ The backend rules in this project cover:
 - Testing methodologies
 - Code style and naming conventions
 
-For more details, see the [Backend Architecture Rules](./.cursor) file.
+For more details, see the [Backend Architecture Rules](./.cursorrules) file.
 
 ### How Cursor Rules Work
 

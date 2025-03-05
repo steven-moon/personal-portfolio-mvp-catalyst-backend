@@ -5,7 +5,7 @@ This document provides information about the database setup, migration commands,
 ## Related Documentation
 
 - [Backend README](../../README.md) - Main backend documentation with setup instructions
-- [Backend Architecture Rules](../../.cursor) - Coding standards and architecture guidelines
+- [Backend Architecture Rules](../../.cursorrules) - Coding standards and architecture guidelines
 
 ## Database Configuration
 
@@ -150,7 +150,7 @@ The database schema includes the following relationships:
 
 ## Adding a New Model to the Project
 
-When adding a new model to the project, follow these steps to ensure proper integration with the existing codebase. These steps align with the [Backend Architecture Rules](../../.cursor) of our project.
+When adding a new model to the project, follow these steps to ensure proper integration with the existing codebase. These steps align with the [Backend Architecture Rules](../../.cursorrules) of our project.
 
 ### Step 1: Create a Migration File
 
@@ -725,7 +725,7 @@ NODE_ENV=development DEBUG=sequelize* npx sequelize-cli db:migrate
 
 ## Best Practices for Sequelize
 
-Refer to the [Backend Architecture Rules](../../.cursor) file for detailed information on Sequelize best practices, including:
+Refer to the [Backend Architecture Rules](../../.cursorrules) file for detailed information on Sequelize best practices, including:
 
 - Model relationship definition
 - Transaction usage

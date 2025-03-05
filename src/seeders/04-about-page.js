@@ -102,6 +102,7 @@ module.exports = {
           aboutId: 1,
           name: 'JavaScript',
           category: 'technical',
+          categoryTitle: 'Technical Skills',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -109,6 +110,7 @@ module.exports = {
           aboutId: 1,
           name: 'React',
           category: 'technical',
+          categoryTitle: 'Technical Skills',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -116,6 +118,7 @@ module.exports = {
           aboutId: 1,
           name: 'Node.js',
           category: 'technical',
+          categoryTitle: 'Technical Skills',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -123,6 +126,7 @@ module.exports = {
           aboutId: 1,
           name: 'Express',
           category: 'technical',
+          categoryTitle: 'Technical Skills',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -130,6 +134,7 @@ module.exports = {
           aboutId: 1,
           name: 'SQL',
           category: 'technical',
+          categoryTitle: 'Technical Skills',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -137,6 +142,7 @@ module.exports = {
           aboutId: 1,
           name: 'MongoDB',
           category: 'technical',
+          categoryTitle: 'Technical Skills',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -144,6 +150,7 @@ module.exports = {
           aboutId: 1,
           name: 'Git',
           category: 'technical',
+          categoryTitle: 'Technical Skills',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -151,6 +158,7 @@ module.exports = {
           aboutId: 1,
           name: 'UI/UX Design',
           category: 'design',
+          categoryTitle: 'Design Skills',
           createdAt: new Date(),
           updatedAt: new Date()
         }

@@ -79,11 +79,29 @@ module.exports = {
     });
 
     // Add unique constraint to prevent duplicate platform entries per ContactInfo
-    await queryInterface.addConstraint('SocialMedia', {
-      fields: ['contactInfoId', 'platform'],
-      type: 'unique',
-      name: 'unique_social_platform_per_contact'
-    });
+    try {
+      // First check if constraint already exists
+      const [indexes] = await queryInterface.sequelize.query(
+        "SHOW INDEXES FROM `SocialMedia` WHERE Key_name = 'unique_social_platform_per_contact';"
+      );
+      
+      // Only add constraint if it doesn't exist
+      if (indexes.length === 0) {
+        await queryInterface.addConstraint('SocialMedia', {
+          fields: ['contactInfoId', 'platform'],
+          type: 'unique',
+          name: 'unique_social_platform_per_contact'
+        });
+      } else {
+        console.log('Constraint unique_social_platform_per_contact already exists, skipping...');
+      }
+    } catch (error) {
+      // If error is not about duplicate constraint, rethrow it
+      if (!error.message.includes('Duplicate key name') && !error.message.includes('ER_DUP_KEYNAME')) {
+        throw error;
+      }
+      console.log('Constraint already exists, continuing migration...');
+    }
   },
 
   down: async (queryInterface, Sequelize) => {

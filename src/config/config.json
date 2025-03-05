@@ -5,10 +5,7 @@
     "database": "personal_portfolio_db",
     "host": "127.0.0.1",
     "port": 3306,
-    "dialect": "mysql",
-    "dialectOptions": {
-      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
-    }
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
@@ -16,10 +13,7 @@
     "database": "personal_portfolio_db_test",
     "host": "127.0.0.1",
     "port": 3306,
-    "dialect": "mysql",
-    "dialectOptions": {
-      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
-    }
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",

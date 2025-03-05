@@ -13,8 +13,10 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1d';
  */
 async function signup(req, res, next) {
   try {
-    console.log('[DEBUG] signup request received with body:', req.body);
-    const { username, email, password } = req.body;
+    // Log request without exposing sensitive data
+    const { password, ...safeData } = req.body;
+    console.log('[DEBUG] signup request received:', safeData);
+    const { username, email } = req.body;
 
     // Check if required fields are provided
     if (!username || !email || !password) {
@@ -113,8 +115,8 @@ async function signin(req, res, next) {
       });
     }
 
-    // Find the user
-    const user = await User.findOne({
+    // Find the user - using unscoped to include password field
+    const user = await User.unscoped().findOne({
       where: {
         // Allow signin with either username or email
         [Op.or]: [  // Use Op directly

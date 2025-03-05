@@ -124,6 +124,29 @@ class MigrationRunner {
       
       console.log(`Migration ${fileName} completed successfully.`);
     } catch (error) {
+      // Handle known error types more gracefully
+      if (error.name === 'SequelizeDatabaseError') {
+        // Duplicate key errors - can be safely ignored in some cases
+        if (error.parent && (
+          error.parent.code === 'ER_DUP_KEYNAME' || 
+          error.message.includes('Duplicate key name') ||
+          error.parent.code === 'ER_DUP_FIELDNAME' || // MySQL duplicate column
+          error.message.includes('Duplicate column name')
+        )) {
+          console.warn(`Warning in migration ${fileName}: Duplicate key/constraint or column detected, this may be intentional.`);
+          
+          // Record migration as completed anyway
+          await this.sequelize.query(
+            'INSERT INTO SequelizeMeta (name) VALUES (?)',
+            { replacements: [fileName] }
+          );
+          
+          console.log(`Migration ${fileName} marked as completed despite duplication warning.`);
+          return;
+        }
+      }
+      
+      // For other errors, log and rethrow
       console.error(`Error running migration ${fileName}:`, error);
       throw error;
     }
