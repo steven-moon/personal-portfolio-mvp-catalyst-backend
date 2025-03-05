@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const { testConnection } = require('./config/database');
 const db = require('./models');
 const routes = require('./routes');
@@ -9,6 +10,18 @@ const { initializeDatabase } = require('./utils/dbInit');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// CORS configuration
+const corsOptions = {
+  origin: ['http://localhost:8080', 'http://127.0.0.1:8080'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: true,
+  maxAge: 86400 // 24 hours
+};
+
+// Enable CORS
+app.use(cors(corsOptions));
 
 // Request logging middleware
 app.use(getLogger());
