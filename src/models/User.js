@@ -72,7 +72,19 @@ module.exports = (sequelize) => {
   // This will be used to create associations with other models
   User.associate = function(models) {
     // Define associations here when needed
-    // Example: User.hasMany(models.Post);
+    // One-to-one relationship with About
+    User.hasOne(models.About, {
+      foreignKey: 'userId',
+      as: 'about',
+      onDelete: 'CASCADE'
+    });
+    
+    // One-to-many relationship with BlogPost (as author)
+    User.hasMany(models.BlogPost, {
+      foreignKey: 'authorId',
+      as: 'blogPosts',
+      onDelete: 'CASCADE'
+    });
   };
 
   return User;

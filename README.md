@@ -130,6 +130,57 @@ node scripts/api-test.js
 └── README.md
 ```
 
+## Database Seeders
+
+The application comes with several seeders to populate your database with sample data for development and testing.
+
+### Available Seeders
+
+1. **User Seeders** - Creates admin and sample users
+2. **Site Settings** - Initializes default site configuration settings
+3. **Home Page Content** - Creates sample hero, services and testimonials
+4. **About Page Content** - Populates bio, education, work experience, and skills
+5. **Projects** - Adds sample portfolio projects with tags and images
+6. **Contact Messages** - Creates sample contact form submissions
+7. **Blog** - Adds blog categories and sample blog posts
+
+### Running Seeders
+
+To run all seeders at once:
+
+```
+node src/scripts/run-seeders.js
+```
+
+This will:
+- Check if data already exists to avoid duplicates
+- Apply all seeders in the correct order
+- Only seed tables that don't already have data
+
+### Manual Testing
+
+After running the seeders, you can test the API endpoints using the provided test scripts:
+
+```
+# Test authentication and user API
+node scripts/auth-test.js
+
+# Test home page API
+node scripts/home-api-test.js
+
+# Test project API
+node scripts/project-api-test.js
+
+# Test about page API
+node scripts/about-api-test.js
+
+# Test blog API
+node scripts/blog-api-test.js
+
+# Test contact API
+node scripts/contact-api-test.js
+```
+
 ## License
 
 This project is licensed under the MIT License.

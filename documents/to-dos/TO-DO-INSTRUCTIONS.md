@@ -46,6 +46,25 @@ This document contains a checklist of tasks to implement a secure Node.js Expres
   - Wire up everything in the main file and start the server
   - [Detailed Instructions](/documents/setup-instructions/INSTRUCTIONS-SECTION-10.md)
 
+- [x] **Step 11: Database Setup, Initialization, and Testing**
+  - Set up MySQL Database
+  - Create Database Migration System
+  - Implement Database Seeding
+  - Enhance Database Initialization Process
+  - Create Documentation
+
+- [x] **Step 12: Database Migrations for Portfolio Data Models**
+  - Create migration scripts for all portfolio data models
+  - Set up Sequelize CLI configuration
+  - Run and test migrations
+  - Create database documentation
+
+- [ ] **Step 13: Implement Sequelize Models**
+  - Create models for all database tables defined in migrations
+  - Set up model associations
+  - Implement validation and hooks
+  - [Detailed Instructions](/documents/to-dos/TO-DO-SETUP-MODELS.md)
+
 ## Progress Tracking
 
 Mark tasks as completed by replacing `[ ]` with `[x]` as you progress through the implementation.
