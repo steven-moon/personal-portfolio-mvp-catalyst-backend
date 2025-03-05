@@ -1,0 +1,33 @@
+{
+  "development": {
+    "username": "root",
+    "password": "abcdef9999",
+    "database": "personal_portfolio_db",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql",
+    "dialectOptions": {
+      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": "abcdef9999",
+    "database": "personal_portfolio_db_test",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql",
+    "dialectOptions": {
+      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
+    }
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "personal_portfolio_db_production",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql",
+    "logging": false
+  }
+} 
