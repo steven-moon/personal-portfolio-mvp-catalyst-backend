@@ -169,72 +169,54 @@ This project focuses on creating a user-friendly interface for content creators 
         {
           projectId: 1,
           imageUrl: '/assets/images/projects/ecommerce-1.jpg',
-          caption: 'Product catalog view',
-          order: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           projectId: 1,
           imageUrl: '/assets/images/projects/ecommerce-2.jpg',
-          caption: 'Shopping cart interface',
-          order: 2,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           projectId: 1,
           imageUrl: '/assets/images/projects/ecommerce-3.jpg',
-          caption: 'Admin dashboard',
-          order: 3,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           projectId: 2,
           imageUrl: '/assets/images/projects/taskmanager-1.jpg',
-          caption: 'Kanban board view',
-          order: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           projectId: 2,
           imageUrl: '/assets/images/projects/taskmanager-2.jpg',
-          caption: 'Task detail view',
-          order: 2,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           projectId: 3,
           imageUrl: '/assets/images/projects/weather-1.jpg',
-          caption: 'Current weather display',
-          order: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           projectId: 3,
           imageUrl: '/assets/images/projects/weather-2.jpg',
-          caption: 'Five-day forecast',
-          order: 2,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           projectId: 4,
           imageUrl: '/assets/images/projects/blog-1.jpg',
-          caption: 'Content editor',
-          order: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           projectId: 4,
           imageUrl: '/assets/images/projects/blog-2.jpg',
-          caption: 'Analytics dashboard',
-          order: 2,
           createdAt: new Date(),
           updatedAt: new Date()
         }

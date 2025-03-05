@@ -35,12 +35,42 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        notEmpty: true
+        notEmpty: true,
+        isString(value) {
+          console.log('Validating story field:', value);
+          console.log('Story type:', typeof value);
+          
+          if (typeof value !== 'string') {
+            throw new Error('story must be a string');
+          }
+          
+          if (value.length < 10) {
+            console.warn('Story is very short:', value);
+          }
+        }
       }
     }
   }, {
     tableName: 'Abouts',
-    timestamps: true
+    timestamps: true,
+    hooks: {
+      beforeValidate: (about, options) => {
+        console.log('Before validate hook triggered for About model');
+        console.log('Story value:', about.story);
+        console.log('Story type:', typeof about.story);
+        
+        // If story is an array, convert it to a string
+        if (Array.isArray(about.story)) {
+          console.log('Converting story array to string');
+          about.story = about.story.join('\n\n');
+          console.log('Converted story:', about.story);
+        }
+      },
+      validationFailed: (instance, options, error) => {
+        console.error('Validation failed for About model:', error.message);
+        console.error('Validation errors:', JSON.stringify(error, null, 2));
+      }
+    }
   });
 
   About.associate = function(models) {

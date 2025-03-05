@@ -4,9 +4,12 @@ const router = express.Router();
 const aboutController = require('../controllers/aboutController');
 const { authenticateToken } = require('../middlewares');
 
+// Public route for getting about data
+router.get('/public', aboutController.getPublicAbout);
+
 // All routes in this file are protected by JWT middleware
 // About profile routes
-router.get('/', authenticateToken, aboutController.getOrCreateAbout);
+router.get('/', authenticateToken, aboutController.getAbout);
 router.post('/', authenticateToken, aboutController.createAbout);
 router.put('/', authenticateToken, aboutController.updateAbout);
 router.delete('/', authenticateToken, aboutController.deleteAbout);

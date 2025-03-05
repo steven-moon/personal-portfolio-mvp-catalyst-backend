@@ -1,0 +1,50 @@
+# Cursor Rules for AI
+
+## Backend Architecture Best Practices
+- Follow the MVC (Model-View-Controller) architecture pattern
+- Keep route handlers thin and delegate business logic to service layers
+- Use middleware for cross-cutting concerns (auth, validation, logging)
+- Handle errors consistently through the error middleware
+- Use environment variables for configuration
+
+## Express.js Best Practices
+- Use routers to organize API endpoints by resource/domain
+- Implement proper error handling with middleware
+- Validate request inputs using middleware
+- Use proper HTTP status codes for responses
+- Implement rate limiting for public endpoints
+
+## Sequelize Best Practices
+- Define proper model relationships in model definitions
+- Use transactions for multi-step database operations
+- Implement proper validation in models
+- Use Sequelize migrations for database schema changes
+- Avoid raw queries when possible, use Sequelize ORM methods
+
+## Security Practices
+- Store sensitive data in environment variables (JWT secret, DB credentials)
+- Hash passwords using bcrypt with appropriate salt rounds
+- Implement proper JWT auth with token validation
+- Set appropriate security headers
+- Implement CORS with specific origins rather than wildcard
+
+## Project Structure
+- Organize code by feature/domain when possible
+- Keep controllers focused on HTTP concerns
+- Use services for business logic
+- Implement repository pattern for database operations
+- Centralize error handling with custom error classes
+
+## Testing Guidelines
+- Write unit tests for services and utilities
+- Use integration tests for API endpoints
+- Mock database interactions for unit tests
+- Test happy and error paths
+- Implement CI/CD pipeline for automated testing
+
+## Code Style
+- Use consistent naming conventions (camelCase for variables, functions, PascalCase for classes)
+- Implement async/await pattern for asynchronous code
+- Document complex functions and APIs
+- Use ESLint for code style enforcement
+- Keep functions small and focused on a single responsibility

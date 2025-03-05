@@ -1,5 +1,5 @@
 const express = require('express');
-const { authenticateToken } = require('../middlewares');
+const { authenticateToken, upload } = require('../middlewares');
 const blogController = require('../controllers/blogController');
 
 const router = express.Router();
@@ -41,5 +41,9 @@ router.get('/authors/:id/posts', blogController.getBlogPostsByAuthor);
 
 // GET /api/blog/categories/:id/posts - Get blog posts by category (public)
 router.get('/categories/:id/posts', blogController.getBlogPostsByCategory);
+
+// Image upload route
+// POST /api/blog/upload-image - Upload a blog image (authenticated)
+router.post('/upload-image', authenticateToken, upload.single('image'), blogController.uploadBlogImage);
 
 module.exports = router; 

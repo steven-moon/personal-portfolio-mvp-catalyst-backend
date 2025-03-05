@@ -15,14 +15,14 @@ module.exports = {
     // Only proceed if no contact info exists
     if (contactInfo.length === 0) {
       // Create contact info
-      const [contactInfoId] = await queryInterface.bulkInsert('ContactInfos', [
+      await queryInterface.bulkInsert('ContactInfos', [
         {
           email: 'contact@example.com',
           location: 'San Francisco, CA',
           createdAt: new Date(),
           updatedAt: new Date()
         }
-      ], { returning: true });
+      ]);
       
       console.log('Contact info created successfully');
       

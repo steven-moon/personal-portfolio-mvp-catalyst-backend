@@ -212,7 +212,7 @@ async function getBlogPostById(req, res, next) {
 async function createBlogPost(req, res, next) {
   try {
     const userId = req.user.id;
-    const { title, excerpt, content, categoryId, imageUrl } = req.body;
+    const { title, excerpt, content, categoryId, imageUrl, date, authorId } = req.body;
     
     // Validate required fields
     if (!title || !excerpt || !content) {
@@ -231,16 +231,37 @@ async function createBlogPost(req, res, next) {
       }
     }
     
+    // If authorId is provided, check if user exists
+    let finalAuthorId = userId; // Default to current user
+    
+    if (authorId) {
+      // If admin wants to create a post on behalf of another user
+      if (req.user.role === 'admin') {
+        const author = await User.findByPk(authorId);
+        if (!author) {
+          return res.status(400).json({ 
+            message: 'Selected author does not exist' 
+          });
+        }
+        finalAuthorId = authorId;
+      } else {
+        // Non-admins can only create posts as themselves
+        console.log('Non-admin tried to set authorId, using their own ID instead');
+      }
+    }
+    
     // Create new blog post
     const blogPostData = {
       title,
       excerpt,
       content,
-      date: new Date(),
+      date: date || new Date(), // Use provided date or current date
       imageUrl,
-      authorId: userId,
+      authorId: finalAuthorId,
       categoryId: categoryId || null
     };
+    
+    console.log('Creating blog post with data:', blogPostData);
     
     const newBlogPost = await blogPostRepo.create(blogPostData);
     
@@ -265,7 +286,7 @@ async function updateBlogPost(req, res, next) {
   try {
     const userId = req.user.id;
     const postId = req.params.id;
-    const { title, excerpt, content, categoryId, imageUrl } = req.body;
+    const { title, excerpt, content, categoryId, imageUrl, date, authorId } = req.body;
     
     // Get the blog post
     const blogPost = await blogPostRepo.getById(postId);
@@ -293,6 +314,16 @@ async function updateBlogPost(req, res, next) {
       }
     }
     
+    // If authorId is provided, check if user exists
+    if (authorId) {
+      const author = await User.findByPk(authorId);
+      if (!author) {
+        return res.status(400).json({ 
+          message: 'Selected author does not exist' 
+        });
+      }
+    }
+    
     // Update the blog post
     const updateData = {};
     if (title) updateData.title = title;
@@ -300,6 +331,10 @@ async function updateBlogPost(req, res, next) {
     if (content) updateData.content = content;
     if (imageUrl !== undefined) updateData.imageUrl = imageUrl;
     if (categoryId !== undefined) updateData.categoryId = categoryId;
+    if (date !== undefined) updateData.date = date;
+    if (authorId !== undefined) updateData.authorId = authorId;
+    
+    console.log('Updating blog post with data:', updateData);
     
     await blogPostRepo.update(postId, updateData);
     
@@ -413,6 +448,41 @@ async function getBlogPostsByCategory(req, res, next) {
   }
 }
 
+/******************************
+ * Image Upload Operations
+ ******************************/
+
+// Upload blog image
+async function uploadBlogImage(req, res, next) {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ 
+        message: 'No image file provided' 
+      });
+    }
+
+    // Get the server URL from request
+    const protocol = req.protocol;
+    const host = req.get('host');
+    
+    // Create the full URL to the uploaded file
+    const filePath = req.file.path.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+    const relativePath = filePath.split('uploads/')[1]; // Get the path after 'uploads/'
+    const fileUrl = `${protocol}://${host}/uploads/${relativePath}`;
+    
+    console.log('Image uploaded successfully:', fileUrl);
+    
+    // Return the URL to the uploaded file
+    res.json({ 
+      url: fileUrl,
+      message: 'Image uploaded successfully' 
+    });
+  } catch (err) {
+    console.error('Error in uploadBlogImage:', err);
+    next(err);
+  }
+}
+
 // Export all the controller functions
 module.exports = {
   // Category controller functions
@@ -429,5 +499,8 @@ module.exports = {
   updateBlogPost,
   deleteBlogPost,
   getBlogPostsByAuthor,
-  getBlogPostsByCategory
+  getBlogPostsByCategory,
+  
+  // Image upload
+  uploadBlogImage
 }; 

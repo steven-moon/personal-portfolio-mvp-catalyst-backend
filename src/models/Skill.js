@@ -9,10 +9,17 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     category: {
-      type: DataTypes.ENUM('technical', 'design'),
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isIn: [['technical', 'design']]
+        notEmpty: true
+      }
+    },
+    categoryTitle: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
       }
     },
     name: {

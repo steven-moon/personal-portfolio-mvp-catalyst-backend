@@ -38,8 +38,16 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
-        isUrl: {
-          msg: "Must be a valid URL for the image"
+        isUrlOrLocalhost(value) {
+          // Regular expression for URL validation that also accepts localhost URLs
+          const urlRegex = /^(https?:\/\/)?(localhost(:\d+)?|([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,})(\/\S*)?$/;
+          
+          // Also accept relative paths that start with /
+          const isRelativePath = value.startsWith('/');
+          
+          if (!urlRegex.test(value) && !isRelativePath) {
+            throw new Error('Must be a valid URL for the image');
+          }
         }
       }
     },

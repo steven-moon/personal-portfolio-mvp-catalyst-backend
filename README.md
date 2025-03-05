@@ -1,8 +1,8 @@
 # Node.js Express API with Authentication
 
-A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JWT authentication.
+A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JWT authentication for the Personal Portfolio project.
 
-## Features
+## 🌟 Features
 
 - User authentication using JWT (JSON Web Tokens)
 - User management with role-based authorization
@@ -12,7 +12,7 @@ A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JW
 - Structured project architecture
 - Automated database migration and seeding
 
-## API Endpoints
+## 🔌 API Endpoints
 
 ### Authentication
 - `POST /api/auth/signup` - Register a new user
@@ -24,7 +24,23 @@ A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JW
 - `PUT /api/users/:id` - Update user (requires authentication)
 - `DELETE /api/users/:id` - Delete user (requires authentication)
 
-## Getting Started
+## 🛠️ Technology Stack
+
+- **Backend**:
+  - Node.js
+  - Express.js
+  - Sequelize ORM
+  - MySQL database
+  - JWT for authentication
+  - bcrypt for password hashing
+
+- **Tools & Utilities**:
+  - dotenv for environment variables
+  - Winston for logging
+  - Express Validator for request validation
+  - ESLint for code linting
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -34,13 +50,13 @@ A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JW
 ### Installation
 
 1. Clone the repository
-```
+```bash
 git clone https://github.com/yourusername/node-express-auth-api.git
 cd node-express-auth-api
 ```
 
 2. Install dependencies
-```
+```bash
 npm install
 ```
 
@@ -57,7 +73,7 @@ JWT_SECRET=your_jwt_secret_key
 ```
 
 4. Setup the database and start the application
-```
+```bash
 npm run init
 ```
 
@@ -68,7 +84,7 @@ This command will:
 - Start the application in development mode with auto-reload
 
 Alternatively, you can run these steps individually:
-```
+```bash
 # Create database only
 npm run setup-db
 
@@ -84,7 +100,7 @@ After initialization, you can log in with these credentials:
 - Email: admin@example.com
 - Password: admin123
 
-## Troubleshooting
+## ⚠️ Troubleshooting
 
 ### Database Connection Issues
 
@@ -95,22 +111,22 @@ If you encounter database connection issues, check:
    - Verify username and password
 
 2. **Run Without Database**: If you're having persistent database issues, you can run the API in a limited mode:
-   ```
+   ```bash
    npm run dev-no-db-check
    ```
    This will start the server without database connectivity, allowing you to at least see the API documentation.
 
 3. **Review Connection Logs**: The application will output detailed connection information to help diagnose issues.
 
-## Testing
+## 🧪 Testing
 
 To test the API endpoints, run the test script after starting the server:
 
-```
+```bash
 node scripts/api-test.js
 ```
 
-## Project Structure
+## 🧩 Project Structure
 
 ```
 .
@@ -130,7 +146,7 @@ node scripts/api-test.js
 └── README.md
 ```
 
-## Database Seeders
+## 🌱 Database Seeders
 
 The application comes with several seeders to populate your database with sample data for development and testing.
 
@@ -148,7 +164,7 @@ The application comes with several seeders to populate your database with sample
 
 To run all seeders at once:
 
-```
+```bash
 node src/scripts/run-seeders.js
 ```
 
@@ -161,7 +177,7 @@ This will:
 
 After running the seeders, you can test the API endpoints using the provided test scripts:
 
-```
+```bash
 # Test authentication and user API
 node scripts/auth-test.js
 
@@ -181,6 +197,64 @@ node scripts/blog-api-test.js
 node scripts/contact-api-test.js
 ```
 
-## License
+## 🤖 Cursor Rules for AI
 
-This project is licensed under the MIT License.
+This project uses Cursor's Rules for AI feature to maintain consistent coding standards, architecture, and development practices. The rules are structured in the following way:
+
+- Root-level `.cursor` file: Contains high-level project guidelines and references to component-specific rules
+- `/frontend/.cursor`: Contains detailed frontend development rules
+- `/backend/.cursor`: Contains detailed backend development rules
+
+These rules help guide AI assistants to follow project-specific conventions and ensure consistency across the codebase.
+
+### Backend-Specific Rules
+
+The backend rules in this project cover:
+
+- MVC architecture pattern implementation
+- Express.js and Node.js best practices
+- Sequelize ORM usage patterns
+- API endpoint design principles
+- Authentication and security best practices
+- Error handling strategies
+- Project structure guidelines
+- Testing methodologies
+- Code style and naming conventions
+
+### How Cursor Rules Work
+
+Rules for AI contain guidelines, patterns, and instructions for AI to follow when generating or modifying code. These rules help ensure:
+
+- Consistent code style and formatting
+- Adherence to project architecture
+- Following best practices for specific technologies
+- Implementing proper design patterns
+
+### Project-Wide Rules
+
+The root-level rules address:
+
+- Cross-cutting concerns
+- API integration between frontend and backend
+- Deployment considerations
+- Security guidelines
+- Performance considerations
+- Git workflow guidelines
+
+For more information, check out the [Cursor Rules for AI Documentation](https://docs.cursor.com/context/rules-for-ai).
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgements
+- [Express.js](https://expressjs.com/)
+- [Sequelize ORM](https://sequelize.org/)
+- [JWT](https://jwt.io/)
+- [Node.js](https://nodejs.org/)
+- [MySQL](https://www.mysql.com/)
+- [Cursor](https://cursor.com/)
+
+---
+
+Created with ❤️ by [Steve Moon]
