@@ -48,3 +48,15 @@
 - Document complex functions and APIs
 - Use ESLint for code style enforcement
 - Keep functions small and focused on a single responsibility
+
+## Related Documentation
+- [Backend README](./README.md) - Main backend documentation with setup instructions
+- [Database Configuration Guide](./documents/db/DATABASE.md) - Detailed database setup and management documentation
+
+## Model Implementation Guidelines
+- Follow the pattern defined in the [Database Configuration Guide](./documents/db/DATABASE.md)
+- Define models with proper validation and TypeScript interfaces
+- Use standardized repository pattern for database operations
+- Implement appropriate hooks (beforeCreate, afterUpdate, etc.)
+- Add appropriate scopes for common queries
+- Document model relationships and constraints

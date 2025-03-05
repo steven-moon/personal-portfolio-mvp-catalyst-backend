@@ -12,6 +12,11 @@ A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JW
 - Structured project architecture
 - Automated database migration and seeding
 
+## 📖 Related Documentation
+
+- [Database Configuration Guide](./documents/db/DATABASE.md) - Detailed guide on database setup, migrations, and model creation
+- [Backend Architecture Rules](./.cursor) - Coding standards and architecture guidelines using Cursor Rules for AI
+
 ## 🔌 API Endpoints
 
 ### Authentication
@@ -23,6 +28,43 @@ A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JW
 - `GET /api/users/:id` - Get user by ID (requires authentication)
 - `PUT /api/users/:id` - Update user (requires authentication)
 - `DELETE /api/users/:id` - Delete user (requires authentication)
+
+### Projects
+- `GET /api/projects` - Get all projects
+- `GET /api/projects/:id` - Get project by ID
+- `POST /api/projects` - Create a new project (requires authentication)
+- `PUT /api/projects/:id` - Update a project (requires authentication)
+- `DELETE /api/projects/:id` - Delete a project (requires authentication)
+- `GET /api/projects/tags` - Get all project tags
+
+### Blog
+- `GET /api/blog/posts` - Get all blog posts
+- `GET /api/blog/posts/:id` - Get blog post by ID
+- `POST /api/blog/posts` - Create a new blog post (requires authentication)
+- `PUT /api/blog/posts/:id` - Update a blog post (requires authentication)
+- `DELETE /api/blog/posts/:id` - Delete a blog post (requires authentication)
+- `GET /api/blog/categories` - Get all blog categories
+
+### About
+- `GET /api/about` - Get about page data
+- `PUT /api/about` - Update about page data (requires authentication)
+- `GET /api/about/work-experiences` - Get all work experiences
+- `GET /api/about/educations` - Get all educations
+- `GET /api/about/skills` - Get all skills
+
+### Home
+- `GET /api/home` - Get home page data
+- `PUT /api/home` - Update home page data (requires authentication)
+- `GET /api/home/services` - Get all services
+
+### Contact
+- `POST /api/contact/messages` - Submit a contact form message
+- `GET /api/contact/messages` - Get all contact messages (requires authentication)
+- `GET /api/contact/info` - Get contact information
+
+### Site Settings
+- `GET /api/settings` - Get site settings
+- `PUT /api/settings` - Update site settings (requires authentication)
 
 ## 🛠️ Technology Stack
 
@@ -51,8 +93,8 @@ A secure and scalable RESTful API built with Node.js, Express, Sequelize, and JW
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/node-express-auth-api.git
-cd node-express-auth-api
+git clone https://github.com/yourusername/personal-portfolio.git
+cd personal-portfolio/backend
 ```
 
 2. Install dependencies
@@ -62,12 +104,12 @@ npm install
 
 3. Create a `.env` file in the root directory with the following variables:
 ```
-PORT=3000
+PORT=8080
 NODE_ENV=development
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=your_password
-DB_NAME=auth_api_db
+DB_NAME=personal_portfolio_db
 DB_PORT=3306
 JWT_SECRET=your_jwt_secret_key
 ```
@@ -88,11 +130,17 @@ Alternatively, you can run these steps individually:
 # Create database only
 npm run setup-db
 
-# Start the app (which will run migrations automatically)
+# Run migrations
+npx sequelize-cli db:migrate
+
+# Run seeders
+node src/scripts/run-seeders.js
+
+# Start the app
 npm run dev
 ```
 
-The server will start on port 3000 (or the port specified in your `.env` file).
+The server will start on port 8080 (or the port specified in your `.env` file).
 
 ### Default Admin User
 
@@ -109,6 +157,7 @@ If you encounter database connection issues, check:
 1. **MySQL Configuration**: Make sure your MySQL server is running and properly configured in `.env`
    - Check the port number (common ports: 3306 for standard MySQL, 8889 for MAMP)
    - Verify username and password
+   - For MAMP users, check if you need to use a socket path (see `config.json` example in the [Database Guide](./documents/db/DATABASE.md))
 
 2. **Run Without Database**: If you're having persistent database issues, you can run the API in a limited mode:
    ```bash
@@ -120,11 +169,17 @@ If you encounter database connection issues, check:
 
 ## 🧪 Testing
 
-To test the API endpoints, run the test script after starting the server:
+To test the API endpoints, run the test scripts after starting the server:
 
 ```bash
+# Test authentication and user API
+node scripts/auth-test.js
+
+# Test all API endpoints
 node scripts/api-test.js
 ```
+
+For more specific API testing, see the [Manual Testing](#manual-testing) section.
 
 ## 🧩 Project Structure
 
@@ -141,10 +196,13 @@ node scripts/api-test.js
 │   ├── utils/          # Utility functions
 │   └── index.js        # Application entry point
 ├── scripts/            # Utility scripts
+├── documents/          # Documentation files
 ├── .env                # Environment variables
 ├── package.json
 └── README.md
 ```
+
+For detailed information about the database setup and models, refer to the [Database Configuration Guide](./documents/db/DATABASE.md).
 
 ## 🌱 Database Seeders
 
@@ -220,6 +278,8 @@ The backend rules in this project cover:
 - Project structure guidelines
 - Testing methodologies
 - Code style and naming conventions
+
+For more details, see the [Backend Architecture Rules](./.cursor) file.
 
 ### How Cursor Rules Work
 

@@ -1,4 +1,4 @@
-# Instructions Step 5
+# Instructions Step 5: Authentication Controller
 
 ## 5. Implement JWT Authentication Endpoints (Signup & Login)
 

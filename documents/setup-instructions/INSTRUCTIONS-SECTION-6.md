@@ -1,4 +1,4 @@
-# Instructions Step 6
+# Instructions Step 6: Authentication Middleware
 
 ## 6. Create JWT Authentication Middleware to Protect Routes
 

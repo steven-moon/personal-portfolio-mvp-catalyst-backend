@@ -5,16 +5,19 @@ This document provides an overview of all the steps required to build a secure N
 ## Table of Contents
 
 1. [Project Setup and Dependencies](#step-1-project-setup-and-dependencies)
-2. [Database Configuration](#step-2-database-configuration)
-3. [User Model](#step-3-user-model)
-4. [Authentication Middleware](#step-4-authentication-middleware)
-5. [User Controller](#step-5-user-controller)
-6. [Authentication Controller](#step-6-authentication-controller)
-7. [Routes](#step-7-routes)
-8. [Refactor: Base Repository Class](#step-8-refactor-base-repository-class)
-9. [Global Error Handling and Logging](#step-9-global-error-handling-and-logging)
-10. [Integrate Routes and Start the Server](#step-10-integrate-routes-and-start-the-server)
-11. [Database Setup, Initialization, and Testing](#step-11-database-setup-initialization-and-testing)
+2. [Project Structure Organization](#step-2-project-structure-organization)
+3. [Database Configuration](#step-3-database-configuration)
+4. [User Model](#step-4-user-model)
+5. [Authentication Controller](#step-5-authentication-controller)
+6. [Authentication Middleware](#step-6-authentication-middleware)
+7. [User Controller](#step-7-user-controller)
+8. [Routes](#step-8-routes)
+9. [Refactor: Base Repository Class](#step-9-refactor-base-repository-class)
+10. [Global Error Handling and Logging](#step-10-global-error-handling-and-logging)
+11. [Integrate Routes and Start the Server](#step-11-integrate-routes-and-start-the-server)
+12. [Database Setup, Initialization, and Testing](#step-12-database-setup-initialization-and-testing)
+13. [Database Migrations for Portfolio Data Models](#step-13-database-migrations-for-portfolio-data-models)
+14. [Seeder Bug Fixes and Implementation](#step-14-seeder-bug-fixes-and-implementation)
 
 ## Step 1: Project Setup and Dependencies
 
@@ -22,65 +25,99 @@ This document provides an overview of all the steps required to build a secure N
 
 Set up the project structure and install necessary dependencies.
 
-## Step 2: Database Configuration
+## Step 2: Project Structure Organization
 
 [Detailed Instructions for Step 2](INSTRUCTIONS-SECTION-2.md)
 
-Configure the database connection using Sequelize ORM.
+Organize your project into a maintainable structure with appropriate directories.
 
-## Step 3: User Model
+## Step 3: Database Configuration
 
 [Detailed Instructions for Step 3](INSTRUCTIONS-SECTION-3.md)
 
-Create the User model with Sequelize.
+Configure the database connection using Sequelize ORM.
 
-## Step 4: Authentication Middleware
+## Step 4: User Model
 
 [Detailed Instructions for Step 4](INSTRUCTIONS-SECTION-4.md)
 
-Implement JWT authentication middleware.
+Create the User model with Sequelize.
 
-## Step 5: User Controller
+## Step 5: Authentication Controller
 
-[Detailed Instructions for Step 5](INSTRUCTIONS-SECTION-5.md)
-
-Create the User controller with CRUD operations.
-
-## Step 6: Authentication Controller
-
-[Detailed Instructions for Step 6](INSTRUCTIONS-SECTION-6.md)
+[Detailed Instructions for Step 5](INSTRUCTIONS-SECTION-7.md)
 
 Implement authentication controller for signup and signin.
 
-## Step 7: Routes
+## Step 6: Authentication Middleware
 
-[Detailed Instructions for Step 7](INSTRUCTIONS-SECTION-7.md)
+[Detailed Instructions for Step 6](INSTRUCTIONS-SECTION-6.md)
+
+Implement JWT authentication middleware to protect routes.
+
+## Step 7: User Controller
+
+[Detailed Instructions for Step 7](INSTRUCTIONS-SECTION-5.md)
+
+Create the User controller with CRUD operations.
+
+## Step 8: Routes
 
 Set up routes for user and authentication endpoints.
 
-## Step 8: Refactor: Base Repository Class
+This includes:
+- Setting up auth routes for signup and signin
+- Setting up protected user routes
+- Mounting all routes in the main application
 
-[Detailed Instructions for Step 8](INSTRUCTIONS-SECTION-8.md)
+## Step 9: Refactor: Base Repository Class
+
+[Detailed Instructions for Step 9](INSTRUCTIONS-SECTION-8.md)
 
 Refactor CRUD operations by creating a Base Repository class.
 
-## Step 9: Global Error Handling and Logging
+## Step 10: Global Error Handling and Logging
 
-[Detailed Instructions for Step 9](INSTRUCTIONS-SECTION-9.md)
+[Detailed Instructions for Step 10](INSTRUCTIONS-SECTION-9.md)
 
 Implement global error handling and logging.
 
-## Step 10: Integrate Routes and Start the Server
+## Step 11: Integrate Routes and Start the Server
 
-[Detailed Instructions for Step 10](INSTRUCTIONS-SECTION-10.md)
+This step involves wiring everything together:
+- Setting up the Express app with middleware
+- Mounting all routes 
+- Implementing error handling
+- Starting the server with database connection
 
-Wire up everything in the main file and start the server.
-
-## Step 11: Database Setup, Initialization, and Testing
-
-[Detailed Instructions for Step 11](INSTRUCTIONS-SECTION-11.md)
+## Step 12: Database Setup, Initialization, and Testing
 
 Set up the MySQL database, implement migration and seeding systems, and create testing utilities.
+
+This includes:
+- Database connection configuration
+- Migration system setup
+- Seeder implementation
+- Backup and restore functionality
+- Health checks and monitoring
+
+## Step 13: Database Migrations for Portfolio Data Models
+
+Create migration scripts for all portfolio data models:
+- About Me section tables
+- Blog posts tables
+- Contact information tables
+- Home page tables
+- Projects tables
+- Site settings table
+
+## Step 14: Seeder Bug Fixes and Implementation
+
+Fix issues with seeders and implement data population:
+- Correct table name mismatches
+- Fix incorrect field references
+- Implement proper foreign key relationships
+- Populate the database with sample data
 
 ---
 

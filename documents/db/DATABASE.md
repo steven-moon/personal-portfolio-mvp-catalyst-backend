@@ -2,6 +2,11 @@
 
 This document provides information about the database setup, migration commands, and other database-related details for the Personal Portfolio MVP Catalyst Backend.
 
+## Related Documentation
+
+- [Backend README](../../README.md) - Main backend documentation with setup instructions
+- [Backend Architecture Rules](../../.cursor) - Coding standards and architecture guidelines
+
 ## Database Configuration
 
 The database connection is configured in two places:
@@ -128,6 +133,7 @@ The following migration files define the database schema:
 5. **05-create-home-page-tables.js** - Creates tables for HomePages and Services
 6. **06-create-projects-tables.js** - Creates tables for Projects, Tags, ProjectImages, ProjectTags
 7. **07-create-site-settings-table.js** - Creates the SiteSettings table
+8. **08-create-contact-messages-table.js** - Creates the ContactMessages table
 
 ## Database Schema Relationships
 
@@ -144,7 +150,7 @@ The database schema includes the following relationships:
 
 ## Adding a New Model to the Project
 
-When adding a new model to the project, follow these steps to ensure proper integration with the existing codebase:
+When adding a new model to the project, follow these steps to ensure proper integration with the existing codebase. These steps align with the [Backend Architecture Rules](../../.cursor) of our project.
 
 ### Step 1: Create a Migration File
 
@@ -482,7 +488,7 @@ When adding a new model to the project, follow these steps to ensure proper inte
      try {
        const response = await apiRequest('/auth/signin', 'POST', {
          email: 'admin@example.com',
-         password: 'password123'
+         password: 'admin123'
        });
        
        if (response.status !== 200) {
@@ -521,7 +527,77 @@ When adding a new model to the project, follow these steps to ensure proper inte
      }
    }
 
-   // Add other test functions for get, update, delete operations
+   // Test getting all records
+   async function testGetAllRecords() {
+     try {
+       const response = await apiRequest(API_PATH);
+       
+       if (response.status === 200) {
+         console.log(`✅ Got ${response.data.length} records`);
+         return response.data;
+       }
+       
+       throw new Error(`Get all records failed: ${JSON.stringify(response.data)}`);
+     } catch (error) {
+       console.error('❌ Get all records failed:', error.message);
+       return null;
+     }
+   }
+
+   // Test getting a record by ID
+   async function testGetRecordById() {
+     try {
+       const response = await apiRequest(`${API_PATH}/${recordId}`);
+       
+       if (response.status === 200) {
+         console.log('✅ Got record by ID:', response.data);
+         return response.data;
+       }
+       
+       throw new Error(`Get record by ID failed: ${JSON.stringify(response.data)}`);
+     } catch (error) {
+       console.error('❌ Get record by ID failed:', error.message);
+       return null;
+     }
+   }
+
+   // Test updating a record
+   async function testUpdateRecord() {
+     try {
+       const updateData = {
+         field2: 'Updated Test Value 2'
+       };
+       
+       const response = await apiRequest(`${API_PATH}/${recordId}`, 'PUT', updateData, authToken);
+       
+       if (response.status === 200) {
+         console.log('✅ Record updated:', response.data);
+         return response.data;
+       }
+       
+       throw new Error(`Update record failed: ${JSON.stringify(response.data)}`);
+     } catch (error) {
+       console.error('❌ Update record failed:', error.message);
+       return null;
+     }
+   }
+
+   // Test deleting a record
+   async function testDeleteRecord() {
+     try {
+       const response = await apiRequest(`${API_PATH}/${recordId}`, 'DELETE', null, authToken);
+       
+       if (response.status === 204) {
+         console.log('✅ Record deleted successfully');
+         return true;
+       }
+       
+       throw new Error(`Delete record failed: ${JSON.stringify(response.data)}`);
+     } catch (error) {
+       console.error('❌ Delete record failed:', error.message);
+       return false;
+     }
+   }
 
    // Main test function
    async function runTests() {
@@ -534,7 +610,10 @@ When adding a new model to the project, follow these steps to ensure proper inte
      const record = await testCreateRecord();
      
      if (record) {
-       // Add calls to other test functions here
+       await testGetAllRecords();
+       await testGetRecordById();
+       await testUpdateRecord();
+       await testDeleteRecord();
      }
      
      console.log('✅ All YourModel API tests completed');
@@ -550,6 +629,7 @@ When adding a new model to the project, follow these steps to ensure proper inte
 
 1. Update the `DATABASE.md` file to include your new model in the list of migrations.
 2. Update any other relevant documentation to reflect the new functionality.
+3. Update the README.md to include the new API endpoints.
 
 ### Step 7: Test Your Implementation
 
@@ -572,6 +652,48 @@ When adding a new model to the project, follow these steps to ensure proper inte
 
 By following these steps, you can easily add new models to the project with full CRUD operations and proper integration with the existing authentication and API structure.
 
+## Creating a Seeder
+
+To create a seeder for your new model:
+
+1. Generate a new seeder file:
+   ```bash
+   npx sequelize-cli seed:generate --name your-model-seed
+   ```
+
+2. Edit the seeder file in `src/seeders/`:
+   ```javascript
+   'use strict';
+
+   module.exports = {
+     up: async (queryInterface, Sequelize) => {
+       return queryInterface.bulkInsert('YourModels', [
+         {
+           field1: 'Value 1',
+           field2: 'Description 1',
+           relatedModelId: 1,
+           createdAt: new Date(),
+           updatedAt: new Date()
+         },
+         {
+           field1: 'Value 2',
+           field2: 'Description 2',
+           relatedModelId: 2,
+           createdAt: new Date(),
+           updatedAt: new Date()
+         },
+         // Add more sample data as needed
+       ]);
+     },
+
+     down: async (queryInterface, Sequelize) => {
+       return queryInterface.bulkDelete('YourModels', null, {});
+     }
+   };
+   ```
+
+3. Update the `run-seeders.js` script to include your new seeder.
+
 ## Troubleshooting
 
 ### Common Issues
@@ -588,6 +710,11 @@ By following these steps, you can easily add new models to the project with full
 3. **Missing Dependencies**:
    - Run `npm install sequelize sequelize-cli mysql2` to install required packages
 
+4. **Model Association Errors**:
+   - Ensure foreign key fields are properly defined in migrations
+   - Check that the association method in your model is correctly implemented
+   - Verify that the referenced model exists and is properly defined
+
 ### Debugging Migrations
 
 To see more detailed logs during migrations:
@@ -595,3 +722,15 @@ To see more detailed logs during migrations:
 ```bash
 NODE_ENV=development DEBUG=sequelize* npx sequelize-cli db:migrate
 ```
+
+## Best Practices for Sequelize
+
+Refer to the [Backend Architecture Rules](../../.cursor) file for detailed information on Sequelize best practices, including:
+
+- Model relationship definition
+- Transaction usage
+- Validation implementation
+- Migration strategies
+- Query optimization
+
+Following these guidelines will ensure a consistent and maintainable database architecture for your application.

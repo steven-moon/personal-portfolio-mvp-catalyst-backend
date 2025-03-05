@@ -1,6 +1,6 @@
-# Instructions Step 5
+# Instructions Step 7: User Controller
 
-## 5. Implement User CRUD Operations (Protected Routes)
+## 7. Implement User CRUD Operations (Protected Routes)
 
 We will create controllers for user CRUD (Create, Read, Update, Delete) and set up routes for them. These routes should all require authentication, so we'll apply the `authenticateToken` middleware to them.
 
