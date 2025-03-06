@@ -1,0 +1,399 @@
+{
+  "info": {
+    "name": "Personal Portfolio Blog API",
+    "description": "Blog endpoints for the Personal Portfolio MVP Catalyst Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "categories"]
+            },
+            "description": "Get all blog categories (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/categories/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "categories", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Category ID"
+                }
+              ]
+            },
+            "description": "Get a specific category by ID (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "categories"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Technology\",\n    \"description\": \"Articles about technology and software development\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Create a new blog category (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/categories/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "categories", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Category ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Updated Category Name\",\n    \"description\": \"Updated category description\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update a blog category (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/categories/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "categories", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Category ID"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete a blog category (admin only)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Blog category endpoints"
+    },
+    {
+      "name": "Blog Posts",
+      "item": [
+        {
+          "name": "Get All Blog Posts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/posts",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "posts"]
+            },
+            "description": "Get all blog posts (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Blog Post by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/posts/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "posts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Blog Post ID"
+                }
+              ]
+            },
+            "description": "Get a specific blog post by ID (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Blog Post",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/posts",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "posts"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"My First Blog Post\",\n    \"summary\": \"A short summary of the blog post content\",\n    \"content\": \"This is the full content of the blog post with all the details.\",\n    \"categoryId\": 1,\n    \"featured\": false,\n    \"published\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Create a new blog post (authenticated)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Blog Post",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/posts/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "posts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Blog Post ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Blog Post Title\",\n    \"summary\": \"Updated summary\",\n    \"content\": \"Updated content for the blog post\",\n    \"featured\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update a blog post (authenticated, author or admin)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Blog Post",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/posts/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "posts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Blog Post ID"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete a blog post (authenticated, author or admin)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Blog Posts by Author",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/authors/:id/posts",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "authors", ":id", "posts"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Author (User) ID"
+                }
+              ]
+            },
+            "description": "Get blog posts by a specific author (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Blog Posts by Category",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/categories/:id/posts",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "categories", ":id", "posts"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Category ID"
+                }
+              ]
+            },
+            "description": "Get blog posts by a specific category (public)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Blog post endpoints"
+    },
+    {
+      "name": "Media",
+      "item": [
+        {
+          "name": "Upload Blog Image",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/blog/upload-image",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "blog", "upload-image"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/path/to/your/image.jpg",
+                  "description": "Image file to upload"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Upload an image for a blog post (authenticated)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Blog media endpoints"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Base URL for the API"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string",
+      "description": "JWT authentication token"
+    }
+  ]
+} 

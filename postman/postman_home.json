@@ -1,0 +1,283 @@
+{
+  "info": {
+    "name": "Personal Portfolio Home API",
+    "description": "Home page endpoints for the Personal Portfolio MVP Catalyst Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Home Page",
+      "item": [
+        {
+          "name": "Get Home Page",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/home",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "home"]
+            },
+            "description": "Get home page data (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Home Page",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/home",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "home"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Welcome to My Portfolio\",\n    \"subtitle\": \"Software Developer & Designer\",\n    \"introText\": \"I create elegant and performant solutions for web and mobile.\",\n    \"heroImage\": \"hero.jpg\",\n    \"showFeaturedProjects\": true,\n    \"showFeaturedPosts\": true,\n    \"callToAction\": \"Get in touch to discuss your project\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Create home page data (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Home Page",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/home/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "home", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Home Page ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Title\",\n    \"subtitle\": \"Updated Subtitle\",\n    \"introText\": \"Updated introduction text.\",\n    \"showFeaturedProjects\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update home page data (admin only)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Home page endpoints"
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Get All Services",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/home/:homePageId/services",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "home", ":homePageId", "services"],
+              "variable": [
+                {
+                  "key": "homePageId",
+                  "value": "1",
+                  "description": "Home Page ID"
+                }
+              ]
+            },
+            "description": "Get all services for a home page (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Service by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/home/service/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "home", "service", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Service ID"
+                }
+              ]
+            },
+            "description": "Get a specific service (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Service",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/home/:homePageId/services",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "home", ":homePageId", "services"],
+              "variable": [
+                {
+                  "key": "homePageId",
+                  "value": "1",
+                  "description": "Home Page ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Web Development\",\n    \"description\": \"Custom websites and web applications built with modern technologies.\",\n    \"icon\": \"code\",\n    \"featured\": true,\n    \"order\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Add a service to a home page (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Service",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/home/service/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "home", "service", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Service ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Service Title\",\n    \"description\": \"Updated service description\",\n    \"featured\": false,\n    \"order\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update a service (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Service",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/home/service/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "home", "service", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Service ID"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete a service (admin only)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Service endpoints"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Base URL for the API"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string",
+      "description": "JWT authentication token"
+    }
+  ]
+} 

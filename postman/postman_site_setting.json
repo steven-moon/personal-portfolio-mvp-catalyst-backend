@@ -1,0 +1,146 @@
+{
+  "info": {
+    "name": "Personal Portfolio Site Settings API",
+    "description": "Site settings endpoints for the Personal Portfolio MVP Catalyst Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Public Site Settings",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/settings/public",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "settings", "public"]
+        },
+        "description": "Get public site settings"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Site Settings",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/settings",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "settings"]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{authToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "description": "Get all site settings (protected route)"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Site Settings",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{baseUrl}}/api/settings",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "settings"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"siteName\": \"My Portfolio\",\n    \"siteTagline\": \"Web Developer & Designer\",\n    \"siteDescription\": \"A personal portfolio website showcasing my work and skills\",\n    \"logoImage\": \"logo.png\",\n    \"faviconImage\": \"favicon.ico\",\n    \"primaryColor\": \"#3498db\",\n    \"secondaryColor\": \"#2ecc71\",\n    \"accentColor\": \"#e74c3c\",\n    \"fontMain\": \"Roboto, sans-serif\",\n    \"fontSecondary\": \"Montserrat, sans-serif\",\n    \"googleAnalyticsId\": \"UA-XXXXXXXXX-X\",\n    \"metaKeywords\": \"portfolio, web developer, designer, freelancer\",\n    \"showBlogSection\": true,\n    \"showProjectsSection\": true,\n    \"enableDarkMode\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{authToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "description": "Create site settings (protected route)"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Site Settings",
+      "request": {
+        "method": "PUT",
+        "url": {
+          "raw": "{{baseUrl}}/api/settings/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "settings", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1",
+              "description": "Site Settings ID"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"siteName\": \"Updated Portfolio Name\",\n    \"siteTagline\": \"Updated Tagline\",\n    \"primaryColor\": \"#9b59b6\",\n    \"enableDarkMode\": false\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{authToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "description": "Update site settings (protected route)"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Base URL for the API"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string",
+      "description": "JWT authentication token"
+    }
+  ]
+} 

@@ -1,0 +1,428 @@
+{
+  "info": {
+    "name": "Personal Portfolio About API",
+    "description": "About section endpoints for the Personal Portfolio MVP Catalyst Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "About Profile",
+      "item": [
+        {
+          "name": "Get Public About",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/about/public",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about", "public"]
+            },
+            "description": "Get public about information"
+          },
+          "response": []
+        },
+        {
+          "name": "Get About",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/about",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Get all about information (protected route)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create About",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/about",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"About Me\",\n    \"summary\": \"Experienced developer with a passion for creating clean, performant applications.\",\n    \"bioContent\": \"I've been developing software for over 5 years, specializing in web technologies.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Create about information (protected route)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update About",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/about",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated About Me\",\n    \"summary\": \"Updated summary content\",\n    \"bioContent\": \"Updated bio content\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update about information (protected route)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete About",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/about",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete about information (protected route)"
+          },
+          "response": []
+        }
+      ],
+      "description": "About profile endpoints"
+    },
+    {
+      "name": "Work Experience",
+      "item": [
+        {
+          "name": "Get Work Experiences",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/about/work-experiences",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about", "work-experiences"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Get all work experiences (protected route)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Work Experience",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/about/work-experiences",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about", "work-experiences"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"position\": \"Senior Developer\",\n    \"company\": \"Tech Company\",\n    \"startDate\": \"2020-01-01\",\n    \"endDate\": \"2023-01-01\",\n    \"description\": \"Developed and maintained web applications\",\n    \"currentJob\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Create a work experience (protected route)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Work Experience",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/about/work-experiences/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about", "work-experiences", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Work Experience ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"position\": \"Lead Developer\",\n    \"company\": \"Updated Company\",\n    \"description\": \"Updated job description\",\n    \"currentJob\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update a work experience (protected route)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Work Experience",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/about/work-experiences/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about", "work-experiences", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Work Experience ID"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete a work experience (protected route)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Work Experience endpoints"
+    },
+    {
+      "name": "Education",
+      "item": [
+        {
+          "name": "Get Educations",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/about/educations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about", "educations"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Get all education entries (protected route)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Education",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/about/educations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about", "educations"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"institution\": \"University Name\",\n    \"degree\": \"Bachelor of Science\",\n    \"field\": \"Computer Science\",\n    \"startDate\": \"2014-09-01\",\n    \"endDate\": \"2018-05-30\",\n    \"description\": \"Studied software development and computer systems\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Create an education entry (protected route)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Education",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/about/educations/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about", "educations", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Education ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"institution\": \"Updated University\",\n    \"degree\": \"Master of Science\",\n    \"description\": \"Updated education description\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update an education entry (protected route)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Education",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/about/educations/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "about", "educations", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Education ID"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete an education entry (protected route)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Education endpoints"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Base URL for the API"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string",
+      "description": "JWT authentication token"
+    }
+  ]
+} 

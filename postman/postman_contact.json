@@ -1,0 +1,263 @@
+{
+  "info": {
+    "name": "Personal Portfolio Contact API",
+    "description": "Contact information endpoints for the Personal Portfolio MVP Catalyst Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Contact Info",
+      "item": [
+        {
+          "name": "Get Contact Info",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/contact",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contact"]
+            },
+            "description": "Get contact information (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Contact Info",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/contact",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contact"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"contact@example.com\",\n    \"phone\": \"+1 123-456-7890\",\n    \"address\": \"123 Main Street, City, Country\",\n    \"contactFormEnabled\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Create contact information (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Contact Info",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/contact/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contact", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Contact Info ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"updated@example.com\",\n    \"phone\": \"+1 987-654-3210\",\n    \"contactFormEnabled\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update contact information (admin only)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Contact information endpoints"
+    },
+    {
+      "name": "Social Media",
+      "item": [
+        {
+          "name": "Get Social Media",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/contact/:contactInfoId/social-media",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contact", ":contactInfoId", "social-media"],
+              "variable": [
+                {
+                  "key": "contactInfoId",
+                  "value": "1",
+                  "description": "Contact Info ID"
+                }
+              ]
+            },
+            "description": "Get all social media for a contact (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Social Media",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/contact/:contactInfoId/social-media",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contact", ":contactInfoId", "social-media"],
+              "variable": [
+                {
+                  "key": "contactInfoId",
+                  "value": "1",
+                  "description": "Contact Info ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"platform\": \"LinkedIn\",\n    \"url\": \"https://linkedin.com/in/username\",\n    \"icon\": \"linkedin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Add social media to a contact (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Social Media",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/contact/social-media/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contact", "social-media", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Social Media ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"platform\": \"Updated Platform\",\n    \"url\": \"https://updated-url.com\",\n    \"icon\": \"updated-icon\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update a social media entry (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Social Media",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/contact/social-media/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contact", "social-media", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Social Media ID"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete a social media entry (admin only)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Social media endpoints"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Base URL for the API"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string",
+      "description": "JWT authentication token"
+    }
+  ]
+} 

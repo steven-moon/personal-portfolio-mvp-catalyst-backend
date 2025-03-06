@@ -1,0 +1,307 @@
+{
+  "info": {
+    "name": "Personal Portfolio Project API",
+    "description": "Project endpoints for the Personal Portfolio MVP Catalyst Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Get All Projects",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects"]
+            },
+            "description": "Get all projects (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Project by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Project ID"
+                }
+              ]
+            },
+            "description": "Get a specific project by ID (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Project",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Portfolio Website\",\n    \"summary\": \"A personal portfolio website showcasing my work\",\n    \"description\": \"This is a detailed description of the portfolio website project, including technologies used and challenges overcome.\",\n    \"thumbnailImage\": \"portfolio-thumbnail.jpg\",\n    \"featured\": true,\n    \"projectUrl\": \"https://myportfolio.com\",\n    \"repositoryUrl\": \"https://github.com/username/portfolio\",\n    \"completionDate\": \"2023-06-15\",\n    \"tags\": [\"React\", \"Node.js\", \"TailwindCSS\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Create a new project (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Project ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Portfolio Website\",\n    \"summary\": \"Updated summary\",\n    \"featured\": false,\n    \"tags\": [\"React\", \"TypeScript\", \"TailwindCSS\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Update a project (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Project",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Project ID"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete a project (admin only)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Project management endpoints"
+    },
+    {
+      "name": "Tags",
+      "item": [
+        {
+          "name": "Get All Tags",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/tags/all",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "tags", "all"]
+            },
+            "description": "Get all project tags (public)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Projects by Tag",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/tags/:tagName",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "tags", ":tagName"],
+              "variable": [
+                {
+                  "key": "tagName",
+                  "value": "React",
+                  "description": "Tag name"
+                }
+              ]
+            },
+            "description": "Get projects by tag (public)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Project tag endpoints"
+    },
+    {
+      "name": "Project Images",
+      "item": [
+        {
+          "name": "Add Project Image",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/:projectId/images",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", ":projectId", "images"],
+              "variable": [
+                {
+                  "key": "projectId",
+                  "value": "1",
+                  "description": "Project ID"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/path/to/your/project-image.jpg",
+                  "description": "Project image file"
+                },
+                {
+                  "key": "caption",
+                  "value": "Project screenshot showing the main dashboard",
+                  "type": "text",
+                  "description": "Image caption"
+                },
+                {
+                  "key": "order",
+                  "value": "1",
+                  "type": "text",
+                  "description": "Display order"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Add an image to a project (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Project Image",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/images/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "images", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Project Image ID"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{authToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Delete a project image (admin only)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Project image endpoints"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Base URL for the API"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string",
+      "description": "JWT authentication token"
+    }
+  ]
+} 
