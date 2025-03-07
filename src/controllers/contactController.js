@@ -1,8 +1,9 @@
-const { ContactInfo, SocialMedia } = require('../models');
+const { ContactInfo, SocialMedia, ContactMessage } = require('../models');
 const BaseRepository = require('../models/BaseRepository');
 
 const contactInfoRepo = new BaseRepository(ContactInfo);
 const socialMediaRepo = new BaseRepository(SocialMedia);
+const contactMessageRepo = new BaseRepository(ContactMessage);
 
 /******************************
  * ContactInfo CRUD Operations
@@ -221,6 +222,99 @@ async function deleteSocialMedia(req, res, next) {
   }
 }
 
+// Submit a contact message
+async function submitContactMessage(req, res, next) {
+  try {
+    const { name, email, subject, message } = req.body;
+    
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({ 
+        error: 'Name, email, subject, and message are required' 
+      });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    // Create contact message
+    const contactMessage = await contactMessageRepo.create({
+      name,
+      email,
+      subject,
+      message,
+      isRead: false
+    });
+
+    // Return success response
+    res.status(201).json({
+      success: true,
+      message: 'Contact message submitted successfully',
+      id: contactMessage.id
+    });
+  } catch (err) {
+    console.error('Error in submitContactMessage:', err);
+    next(err);
+  }
+}
+
+// Get all contact messages (admin only)
+async function getContactMessages(req, res, next) {
+  try {
+    // Get all contact messages sorted by newest first
+    const contactMessages = await ContactMessage.findAll({
+      order: [['createdAt', 'DESC']]
+    });
+
+    res.json(contactMessages);
+  } catch (err) {
+    console.error('Error in getContactMessages:', err);
+    next(err);
+  }
+}
+
+// Update a contact message (mark as read, admin only)
+async function updateContactMessage(req, res, next) {
+  try {
+    const { id } = req.params;
+    const { isRead } = req.body;
+    
+    const contactMessage = await contactMessageRepo.getById(id);
+    if (!contactMessage) {
+      return res.status(404).json({ error: 'Contact message not found' });
+    }
+
+    const updates = {};
+    if (isRead !== undefined) updates.isRead = isRead;
+
+    const updatedMessage = await contactMessageRepo.update(id, updates);
+    res.json(updatedMessage);
+  } catch (err) {
+    console.error('Error in updateContactMessage:', err);
+    next(err);
+  }
+}
+
+// Get a specific contact message by ID (admin only)
+async function getContactMessageById(req, res, next) {
+  try {
+    const { id } = req.params;
+    
+    const contactMessage = await contactMessageRepo.getById(id);
+    if (!contactMessage) {
+      return res.status(404).json({ error: 'Contact message not found' });
+    }
+
+    res.json(contactMessage);
+  } catch (err) {
+    console.error('Error in getContactMessageById:', err);
+    next(err);
+  }
+}
+
 module.exports = {
   getContactInfo,
   createContactInfo,
@@ -228,5 +322,9 @@ module.exports = {
   getSocialMedia,
   createSocialMedia,
   updateSocialMedia,
-  deleteSocialMedia
+  deleteSocialMedia,
+  submitContactMessage,
+  getContactMessages,
+  updateContactMessage,
+  getContactMessageById
 }; 
