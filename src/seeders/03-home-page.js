@@ -1,5 +1,5 @@
 /**
- * Seeder script to create default home page content
+ * Seeder script to create default home page content for the fictional developer Avery Parker
  */
 'use strict';
 
@@ -16,49 +16,49 @@ module.exports = {
     if (home.length === 0) {
       // Create the homepage
       await queryInterface.bulkInsert('HomePages', [{
-        title: 'John Developer',
-        subtitle: 'Creating exceptional digital experiences through code',
-        profession: 'Full Stack Developer',
-        profileImage: '/assets/images/hero.jpg',
+        title: 'Avery Parker',
+        subtitle: 'Creating inclusive, next-generation web and AI solutions',
+        profession: 'Full-Stack & AI Developer',
+        profileImage: '/images/sample-profile.png',
         createdAt: new Date(),
         updatedAt: new Date()
       }]);
       
-      console.log('Default home page created successfully');
+      console.log('Default home page created successfully for Avery Parker');
       
       // Create services
       await queryInterface.bulkInsert('Services', [
         {
-          title: 'Web Development',
-          description: 'I build responsive, modern websites and web applications using latest technologies like React, Node.js, and more.',
+          title: 'End-to-End Web Development',
+          description: 'Building user-friendly, performance-driven applications using modern frameworks and best practices.',
           homePageId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title: 'Mobile Applications',
-          description: 'I create cross-platform mobile applications using React Native and Flutter that work seamlessly on both iOS and Android.',
+          title: 'AI & ML Solutions',
+          description: 'Harnessing artificial intelligence for advanced analytics, predictive modeling, and data-driven experiences.',
           homePageId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title: 'UI/UX Design',
-          description: 'I design intuitive user interfaces and create engaging user experiences that help businesses connect with their customers.',
+          title: 'Blockchain Integrations',
+          description: 'Implementing secure, decentralized functionalities with Ethereum, Solidity, and other Web3 technologies.',
           homePageId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title: 'API Development',
-          description: 'I build robust and scalable RESTful APIs and GraphQL services that power your web and mobile applications.',
+          title: 'Technical Leadership',
+          description: 'Mentoring teams, overseeing complex projects, and driving innovation from concept to launch.',
           homePageId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         }
       ]);
       
-      console.log('Default services created successfully');
+      console.log('Default services created successfully for Avery Parker');
     } else {
       console.log('Skipping home page creation - home page already exists');
     }
@@ -71,4 +71,4 @@ module.exports = {
     // Then delete home page
     await queryInterface.bulkDelete('HomePages', {}, {});
   }
-}; 
+};

@@ -1,5 +1,5 @@
 /**
- * Seeder script to create default site settings
+ * Seeder script to create default site settings for a fictional female developer
  */
 'use strict';
 
@@ -15,41 +15,41 @@ module.exports = {
     // Only create default settings if none exist
     if (settings.length === 0) {
       await queryInterface.bulkInsert('SiteSettings', [{
-        siteName: 'My Professional Portfolio',
-        authorName: 'John Developer',
-        siteIcon: '/assets/images/logo.png',
-        email: 'john@example.com',
+        siteName: 'Avery Parker Portfolio',
+        authorName: 'Avery Parker',
+        siteIcon: '/images/icons/icon_256X256.png',
+        email: 'avery.parker@fictional.dev',
         showEmailInFooter: true,
         theme: 'light',
-        primaryColor: '#4A6CF7',
+        primaryColor: '#FF78AE',
         enableAnimations: true,
-        fontFamily: 'Roboto, sans-serif',
-        metaDescription: 'Professional portfolio showcasing my work and skills as a developer',
-        keywords: 'web developer, software engineer, portfolio, projects, coding',
+        fontFamily: 'Open Sans, sans-serif',
+        metaDescription: 'A passionate developer dedicated to building inclusive, cutting-edge web and mobile experiences.',
+        keywords: 'web developer, mobile apps, AI, portfolio, software engineering, design',
         enableSocialMetaTags: true,
         googleAnalyticsId: '',
         enableBlog: true,
         enableProjects: true,
         enableContactForm: true,
         enableNewsletter: false,
-        enableMvpBanner: true,
+        enableMvpBanner: false,
         enableGithub: true,
         enableLinkedin: true,
         enableTwitter: true,
-        enableInstagram: false,
+        enableInstagram: true,
         enableYoutube: false,
         enableFacebook: false,
-        githubUrl: 'https://github.com/johndeveloper',
-        linkedinUrl: 'https://linkedin.com/in/johndeveloper',
-        twitterUrl: 'https://twitter.com/johndeveloper',
-        instagramUrl: null,
+        githubUrl: 'https://github.com/averyparker-fictional',
+        linkedinUrl: 'https://linkedin.com/in/averyparker-fictional',
+        twitterUrl: 'https://twitter.com/averycodes-fictional',
+        instagramUrl: 'https://instagram.com/avery.dev-fictional',
         youtubeUrl: null,
         facebookUrl: null,
         createdAt: new Date(),
         updatedAt: new Date()
       }]);
       
-      console.log('Default site settings created successfully');
+      console.log('Default site settings created successfully for Avery Parker');
     } else {
       console.log('Skipping site settings creation - settings already exist');
     }
@@ -59,4 +59,4 @@ module.exports = {
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('SiteSettings', {}, {});
   }
-}; 
+};

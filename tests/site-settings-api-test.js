@@ -96,19 +96,19 @@ async function testCreateSiteSettings() {
   console.log('\n--- Testing Create Site Settings ---');
   try {
     const siteSettingsData = {
-      siteName: 'My Portfolio',
-      authorName: 'John Developer',
+      siteName: "Steven Moon's Portfolio",
+      authorName: 'Steven Moon',
       siteIcon: '/assets/icon.png',
-      email: 'contact@johndeveloper.com',
+      email: 'moon.steven@gmail.com',
       showEmailInFooter: true,
       theme: 'light',
       primaryColor: '#3498db',
       enableAnimations: true,
       fontFamily: 'Roboto, sans-serif',
-      metaDescription: 'Professional portfolio for John Developer',
-      keywords: 'developer, portfolio, web developer',
+      metaDescription: 'Showcasing my AI & Blockchain advisement, innovative projects, and extensive development experience.',
+      keywords: 'AI, blockchain, software developer, portfolio, generative AI, iOS, web development',
       enableSocialMetaTags: true,
-      googleAnalyticsId: 'UA-12345678-1',
+      googleAnalyticsId: '',
       enableBlog: true,
       enableProjects: true,
       enableContactForm: true,
@@ -120,9 +120,9 @@ async function testCreateSiteSettings() {
       enableInstagram: false,
       enableYoutube: false,
       enableFacebook: false,
-      githubUrl: 'https://github.com/johndeveloper',
-      linkedinUrl: 'https://linkedin.com/in/johndeveloper',
-      twitterUrl: 'https://twitter.com/johndeveloper'
+      githubUrl: 'https://github.com/stevenmoon',      // Update if needed
+      linkedinUrl: 'https://linkedin.com/in/stevenmoon',
+      twitterUrl: 'https://twitter.com/stevenmoon'
     };
 
     const response = await apiRequest('/settings', 'POST', siteSettingsData, authToken);
@@ -191,7 +191,7 @@ async function testUpdateSiteSettings() {
   console.log('\n--- Testing Update Site Settings ---');
   try {
     const updates = {
-      siteName: 'Updated Portfolio',
+      siteName: "Steven Moon's Updated Portfolio",
       primaryColor: '#e74c3c',
       enableNewsletter: true
     };
@@ -243,4 +243,4 @@ async function runTests() {
 // Run the tests
 runTests().catch(error => {
   console.error('❌ Test error:', error);
-}); 
+});
