@@ -27,4 +27,17 @@ router.put('/social-media/:id', authenticateToken, contactController.updateSocia
 // DELETE /api/contact/social-media/:id - Delete a social media entry (admin only)
 router.delete('/social-media/:id', authenticateToken, contactController.deleteSocialMedia);
 
+// Contact Message routes
+// POST /api/contact/submit - Submit a contact message (public)
+router.post('/submit', contactController.submitContactMessage);
+
+// GET /api/contact/messages - Get all contact messages (admin only)
+router.get('/messages', authenticateToken, contactController.getContactMessages);
+
+// GET /api/contact/messages/:id - Get a specific contact message by ID (admin only)
+router.get('/messages/:id', authenticateToken, contactController.getContactMessageById);
+
+// PUT /api/contact/messages/:id - Mark a contact message as read (admin only)
+router.put('/messages/:id', authenticateToken, contactController.updateContactMessage);
+
 module.exports = router; 

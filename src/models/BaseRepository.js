@@ -18,10 +18,14 @@ class BaseRepository {
   }
 
   async update(id, data) {
-    return this.model.update(data, { 
+    // First update the entity
+    await this.model.update(data, { 
       where: { id },
       individualHooks: true // Ensure hooks run (important for password hashing, etc.)
     });
+    
+    // Then fetch and return the updated entity
+    return this.getById(id);
   }
 
   async delete(id) {
