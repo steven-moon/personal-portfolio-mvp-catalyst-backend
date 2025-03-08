@@ -11,18 +11,65 @@ const serviceRepo = new BaseRepository(Service);
 // Get home page data
 async function getHomePage(req, res, next) {
   try {
+    console.log('getHomePage: Retrieving homepage data with services');
+    
+    // Check if database connection is known to be failing
+    if (process.env.DB_CONNECTION_FAILED === 'true') {
+      console.log('getHomePage: DB connection known to be failed, returning fallback data');
+      return res.json(getFallbackHomeData());
+    }
+    
     // Use the new static method to get home page with services
     const homePage = await HomePage.getWithServices();
 
     if (!homePage) {
-      return res.status(404).json({ error: 'Home page data not found' });
+      console.log('getHomePage: No homepage data found in database');
+      // Return a default response instead of 404 to improve user experience
+      return res.json(getFallbackHomeData());
     }
 
+    console.log('getHomePage: Homepage data found, returning to client');
     res.json(homePage);
   } catch (err) {
     console.error('Error in getHomePage:', err);
-    next(err);
+    // Return a fallback response instead of an error
+    res.json(getFallbackHomeData());
   }
+}
+
+// Helper function to get fallback home data
+function getFallbackHomeData() {
+  return {
+    hero: {
+      id: 1,
+      title: "Steven Moon",
+      subtitle: "Innovative AI & Blockchain Advisor with 24+ Years of Experience",
+      profession: "Builder | Founder & CEO",
+      profileImage: "/images/1741449380465-cropped_profile.jpg",
+      services: [
+        {
+          id: "1",
+          title: "AI & Blockchain Advisory",
+          description: "Providing strategic guidance on AI integration, blockchain strategy, and model deployment to drive technological advancements."
+        },
+        {
+          id: "2",
+          title: "Mobile & Web Development",
+          description: "Developing robust mobile and web applications using modern frameworks, optimized for performance and user engagement."
+        },
+        {
+          id: "3",
+          title: "Decentralized Solutions",
+          description: "Implementing secure, decentralized technologies including blockchain governance, smart contract integrations, and token bridging."
+        },
+        {
+          id: "4",
+          title: "Technical Leadership",
+          description: "Mentoring teams and managing projects to deliver innovative, scalable technology solutions across various platforms."
+        }
+      ]
+    }
+  };
 }
 
 // Create home page data

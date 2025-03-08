@@ -79,6 +79,8 @@ app.use(errorHandler);
 // Initialize database connection
 const initializeApp = async () => {
   try {
+    console.log('Initializing backend application...');
+    
     // Check if we should skip database connection (for troubleshooting)
     const skipDbCheck = process.env.NODE_SKIP_DB_CHECK === 'true';
     
@@ -89,12 +91,35 @@ const initializeApp = async () => {
       return;
     }
     
-    // Test database connection
-    const isConnected = await testConnection();
+    console.log('Testing database connection...');
+    console.log('Database config:', {
+      host: process.env.DB_HOST || 'Not set',
+      port: process.env.DB_PORT || 'Not set',
+      user: process.env.DB_USER || 'Not set (username hidden)',
+      database: process.env.DB_NAME || 'Not set',
+      dialect: process.env.DB_DIALECT || 'Not set'
+    });
+    
+    // Test database connection with a timeout
+    let isConnected = false;
+    try {
+      const connectionPromise = testConnection();
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Database connection timeout')), 10000)
+      );
+      
+      isConnected = await Promise.race([connectionPromise, timeoutPromise]);
+    } catch (connError) {
+      console.error('Database connection error:', connError.message);
+      isConnected = false;
+    }
     
     if (!isConnected) {
       console.error('Cannot establish database connection. Check your database configuration.');
       console.warn('Starting server without database functionality for API documentation access.');
+      
+      // Set environment flag to skip DB operations in controllers
+      process.env.DB_CONNECTION_FAILED = 'true';
       
       // Start the server anyway to allow access to documentation
       startServer();
@@ -103,7 +128,13 @@ const initializeApp = async () => {
     
     // Run database migrations and seeds
     console.log('Running database migrations and seeds...');
-    const initResult = await initializeDatabase();
+    let initResult = false;
+    try {
+      initResult = await initializeDatabase();
+    } catch (initError) {
+      console.error('Database initialization failed:', initError);
+      console.warn('Continuing with server startup despite database initialization failure');
+    }
     
     if (!initResult) {
       console.warn('Database initialization had issues. Some features might not work properly.');
@@ -129,8 +160,8 @@ const initializeApp = async () => {
     startServer();
   } catch (error) {
     console.error('Failed to initialize the application:', error);
-    // Exit with error code for deployment environments
-    process.exit(1);
+    console.log('Starting server despite initialization error to maintain service availability');
+    startServer();
   }
 };
 

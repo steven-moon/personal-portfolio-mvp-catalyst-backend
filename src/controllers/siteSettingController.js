@@ -131,12 +131,23 @@ async function updateSiteSettings(req, res, next) {
 // This is a limited version of site settings that is safe to expose publicly
 async function getPublicSiteSettings(req, res, next) {
   try {
+    console.log('getPublicSiteSettings: Retrieving site settings');
+    
+    // Check if database connection is known to be failing
+    if (process.env.DB_CONNECTION_FAILED === 'true') {
+      console.log('getPublicSiteSettings: DB connection known to be failed, returning fallback data');
+      return res.json(getFallbackSiteSettings());
+    }
+    
     const siteSettings = await SiteSetting.findOne();
 
     if (!siteSettings) {
-      return res.status(404).json({ error: 'Site settings not found' });
+      console.log('getPublicSiteSettings: No settings found in database');
+      // Return a default response instead of 404 to improve user experience
+      return res.json(getFallbackSiteSettings());
     }
 
+    console.log('getPublicSiteSettings: Settings found, preparing public fields');
     // Return only public-safe fields
     const publicFields = {
       id: siteSettings.id,
@@ -181,8 +192,46 @@ async function getPublicSiteSettings(req, res, next) {
     res.json(publicFields);
   } catch (err) {
     console.error('Error in getPublicSiteSettings:', err);
-    next(err);
+    // Return default settings instead of an error
+    res.json(getFallbackSiteSettings());
   }
+}
+
+// Helper function to get fallback site settings
+function getFallbackSiteSettings() {
+  return {
+    general: {
+      siteName: 'Steven Moon Portfolio',
+      authorName: 'Steven Moon',
+      siteIcon: '/images/logo.png',
+      email: 'moon.steven@gmail.com',
+      showEmailInFooter: true,
+    },
+    appearance: {
+      theme: 'light',
+      primaryColor: '#1E90FF',
+      enableAnimations: true,
+      fontFamily: 'open-sans',
+    },
+    features: {
+      enableBlog: true,
+      enableProjects: true,
+      enableContactForm: true, 
+      enableNewsletter: true,
+      enableMvpBanner: true,
+    },
+    socialMedia: {
+      enableGithub: true,
+      enableLinkedin: true,
+      enableTwitter: true,
+      enableInstagram: false,
+      enableYoutube: false,
+      enableFacebook: false,
+      githubUrl: 'https://github.com/steven-moon',
+      linkedinUrl: 'https://linkedin.com/in/stevenmoon',
+      twitterUrl: 'https://twitter.com/stevenmoon'
+    }
+  };
 }
 
 module.exports = {
