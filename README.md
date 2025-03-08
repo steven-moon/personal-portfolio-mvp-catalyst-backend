@@ -251,7 +251,89 @@ When working on this project, follow these logging guidelines:
 
 To review the complete development history, check the [Backend Development Logs](./documents/dev-logs/BACKEND-DEV-LOGS.md) file.
 
-## 🌱 Database Seeders
+## 📋 Git Commit Conventions
+
+When contributing to the backend portion of this project, please use the following commit message format to maintain consistency and clarity in the git history.
+
+```
+<type>(<scope>): <subject>
+// blank line
+<body>
+// blank line
+<footer>
+```
+
+### Commit Structure
+
+- **Header** is mandatory, while **Body** and **Footer** are optional
+- No line should exceed 72 characters to avoid automatic line breaks
+
+### Types
+
+- `feat`: New feature (e.g., new endpoint, model, or service)
+- `fix`: Bug fix (e.g., API bug, database issue, validation error)
+- `docs`: Documentation changes (e.g., API docs, comments)
+- `style`: Formatting changes - no functional code change
+- `refactor`: Code refactoring (e.g., optimizing functions, restructuring)
+- `perf`: Performance improvements
+- `test`: Adding/updating tests (e.g., unit tests, integration tests)
+- `chore`: Build process, dependency, or tool changes
+- `db`: Database schema changes, migrations, or seeders
+- `api`: API endpoint modifications or improvements
+- `auth`: Authentication/authorization related changes
+- `security`: Security enhancements or vulnerability fixes
+
+### Scopes (Backend-Specific)
+
+- `controllers`: API controller logic
+- `routes`: API route definitions
+- `models`: Database models
+- `migrations`: Database migrations
+- `seeders`: Database seeders
+- `middleware`: Express middleware
+- `services`: Business logic services
+- `utils`: Utility functions
+- `config`: Configuration files
+- `auth`: Authentication logic
+- `validation`: Input validation
+- `error`: Error handling
+- `logging`: Logging functionality
+- `deps`: Dependencies
+
+### Examples
+
+```
+feat(controllers): Add blog post comment functionality
+
+Implement CRUD operations for blog post comments:
+- Create new comment endpoint with parent/child relationship
+- Retrieve comments by post ID with pagination
+- Update and delete comment endpoints with authorization checks
+- Add validation for comment content
+
+Closes #78
+```
+
+```
+fix(models): Resolve Sequelize association issue in Project model
+
+Fixed incorrect association between Project and Tag models that caused
+N+1 query problems. Optimized eager loading for project queries and
+added proper index to join table.
+```
+
+```
+db(migrations): Add indexes to improve query performance
+
+Added database indexes for frequently queried columns:
+- projects.slug
+- blog_posts.published_at
+- users.email
+
+Performance improvement of ~30% for listing queries.
+```
+
+## �� Database Seeders
 
 The application comes with several seeders to populate your database with sample data for development and testing.
 
